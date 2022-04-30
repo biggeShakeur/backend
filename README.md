@@ -1,5 +1,11 @@
 # 301-final
 
+## Members:
+- Gina Napier
+- Anthony Hill
+- Jason Wilson
+- Kyle Honaker
+
 ## Conflict plan
 What will be your group’s process to resolve conflict, when it arises?  
 
