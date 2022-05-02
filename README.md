@@ -101,3 +101,40 @@ Merge every break
 # Project Description
 
 This is a collaborative project using React.j, Node.js, Express, Auth0, CRUD methodology, MongoDB, and third party API's to create a single page application that provides a user detailed information about an area they may not be familiar with. It tailors to adventurers with a note taking/journal area that the user can utilize to make memorable moments about their travels. The application stores those notes and travels in their own profile.
+
+# User Stories
+
+As a user, I would like to have access to travel information (flight, Hotels, etc..), so that I can prepare for any upcoming vacations.
+
+Feature Tasks:
+- User can view upcoming flights.
+- User can select the requested flight.
+- User can request hotel information
+
+Acceptance Tests:
+- Ensure that the requested hotel shows the user the hotel name and address.
+- Ensure that the requested hotel shows the user the nightly rates per room.
+
+As a user, I would like access to the weather information of the location that I am visiting, so that I can prepare my attire accordingly!
+
+Feature Tasks:
+- Allow the user to search for a specified city.
+- Show the user weather data for the queried location.
+
+As a user, I would like to have the ability to search for a specific location and receive tourist information, so that I can decide which area I would like to visit.
+
+Feature Tasks:
+- Populate an image on the webpage that gives the user tourist attractions
+- Allows the user to search for a specified location.
+
+As a user, I would like the ability to add/edit my notes about any places that I have visited, so that I can keep a memorable journal for my future references!
+
+Feature Tasks:
+- Give the user the option of adding notes to their specified location.
+- Give the user an option to edit notes to their specified location.
+- Log the users data into a database so that it can be saved and referenced.
+
+As a user, I would like to receive weather information about a specified location, so that I can determine whether or not I will receive a weather boost on my Pokémon go app!
+
+Feature Tasks:
+- give the user weather data so that they can decide whether or not they'd receive a boost on the Pokémon go app
