@@ -96,3 +96,8 @@ Merge on working features
 How will you communicate that it’s time to merge?   
 
 Merge every break
+
+
+# Project Description
+
+This is a collaborative project using React.j, Node.js, Express, Auth0, CRUD methodology, MongoDB, and third party API's to create a single page application that provides a user detailed information about an area they may not be familiar with. It tailors to adventurers with a note taking/journal area that the user can utilize to make memorable moments about their travels. The application stores those notes and travels in their own profile.
