@@ -15,6 +15,7 @@ mongoose.connect(process.env.DB_URL);
 
 // BRING IN SCHEMA to interact with the model.
 const Maps = require('./models/trip')
+const trip = require('./modules/trip.js');
 const { response, request } = require('express');
 
 // add validation to confirm we are wired up to our mongo DB
@@ -35,33 +36,24 @@ app.use(cors());
 app.use(express.json());
 const PORT = process.env.PORT || 3002
 
-
-
-
-
 // ROUTES
-// These are our 'endpoints'
-app.get('/trip', getTrip);
-
-async function getTrip (request, response, next) {
-  try {
-    let results = await Maps.find();
-    response.status(200).send(results);
-  }catch(err){
-    next(err);
-  }
-}
-
-// This function will 'get' data from the api database. 
-// 
-
-
-
 app.get('/', (request, response) => {
   response.send('This is the response from your server 3001')
 })
 
+// These are our 'endpoints'
+app.get('/trip'); //Get latitude/longitude
 
+
+
+// This function will 'get' data from the api database. 
+// async function getTrip (request, response, next) {
+//     const { location } = request.query;
+//     trip(location).then(summaries => response.send(summaries)).catch((error) => {
+//       console.error(error);
+//       response.status(200).send('getTrip function is functioning.')
+//     });
+//   }
 
 //at the bottom of all of our routes
 
