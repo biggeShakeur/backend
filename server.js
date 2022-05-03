@@ -14,8 +14,8 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.DB_URL);
 
 // BRING IN SCHEMA to interact with the model.
-const Maps = require('./models/trip')
-const trip = require('./modules/trip.js');
+// const Maps = require('./models/trip')
+// const trip = require('./modules/trip.js');
 const { response, request } = require('express');
 
 // add validation to confirm we are wired up to our mongo DB
