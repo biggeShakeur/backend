@@ -47,13 +47,13 @@ app.get('/trip'); //Get latitude/longitude
 
 
 // This function will 'get' data from the api database. 
-// async function getTrip (request, response, next) {
-//     const { location } = request.query;
-//     trip(location).then(summaries => response.send(summaries)).catch((error) => {
-//       console.error(error);
-//       response.status(200).send('getTrip function is functioning.')
-//     });
-//   }
+async function getTrip (request, response, next) {
+    const { location } = request.query;
+    trip(location).then(summaries => response.send(summaries)).catch((error) => {
+      console.error(error);
+      response.status(200).send('getTrip function is functioning.')
+    });
+  }
 
 //at the bottom of all of our routes
 
