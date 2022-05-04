@@ -29,6 +29,9 @@ db.once('open', function () {
 // implement express
 const app = express();
 
+//AUTH0
+const verifyUser = require('./auth.js');
+
 // middleware
 app.use(cors());
 
