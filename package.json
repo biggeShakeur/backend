@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/WilsonJhub/301-final-back-end#readme",
   "dependencies": {
+    "@auth0/auth0-react": "^1.10.1",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
