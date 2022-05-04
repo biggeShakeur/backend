@@ -4,6 +4,9 @@ let cache = require('./cache.js');
 
 
 
+
+
+
 requestTripData = async (request, response) => {
     const openTripLocation = await axios.get(`https://api.opentripmap.com/0.1/en/places/geoname?name=${location}&country=us&apikey=${process.env.REACT_APP_OPEN_TRIP_API_KEY}`).then(res => res.json());
     console.log(openTripLocation);
