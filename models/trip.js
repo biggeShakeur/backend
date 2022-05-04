@@ -9,7 +9,7 @@ const { Schema } = mongoose;
 // create a book schema, define how our book objects will be structured.
 const mapSchema = new Schema ({
   xid: {type: String, required: true},
-  name: {type: String, required: true},
+  name: {type: String, required: true}, 
   kind: {type: String, required: true},
   osm: {type: String, required: false},
   wikidata: {type: String, required: false},
