@@ -7,17 +7,28 @@ let cache = require('./cache.js');
 
 
 
-requestTripData = async (request, response) => {
-    const openTripLocation = await axios.get(`https://api.opentripmap.com/0.1/en/places/geoname?name=${location}&country=us&apikey=${process.env.REACT_APP_OPEN_TRIP_API_KEY}`).then(res => res.json());
-    console.log(openTripLocation);
-    const bboxAPI = await axios.get(`http://api.opentripmap.com/0.1/us/places/bbox?lat_min=${openTripLocation.data[0].lat}&lon_min=${openTripLocation.data[0].lon}&lat_max=${openTripLocation.data[0].lat}&lon_max=${openTripLocation.data[0].lon}&apikey=${process.env.REACT_APP_OPEN_TRIP_API_KEY}`).then(res => res.json());
-    console.log(bboxAPI);
-    const xidAPI = await axios.get(`http://api.opentripmap.com/0.1/us/places/xid/?lang=en&xid=${bboxAPI.xid}&apikey=${process.env.REACT_APP_OPEN_TRIP_API_KEY}`).then(res => res.json());
-    console.log(xidAPI);
+// const requestTripData = async (request, response) => {
+//     let queryLocation = request.query.location
+//     console.log(queryLocation)
 
-    response.status(200).send(xidAPI);
-}
-module.exports = requestTripData;
+//     const openTripLocation = await axios.get(`https://api.opentripmap.com/0.1/en/places/geoname?name=${location}&country=us&apikey=${process.env.REACT_APP_OPEN_TRIP_API_KEY}`).then(res => res.json());
+//     console.log(openTripLocation);
+//     try {
+//         let openTripData = await axios.get(url)
+//         console.log(openTripData)
+//     } catch (err) {
+
+//     }
+
+//     const bboxAPI = await axios.get(`http://api.opentripmap.com/0.1/us/places/bbox?lat_min=${openTripLocation.data[0].lat}&lon_min=${openTripLocation.data[0].lon}&lat_max=${openTripLocation.data[0].lat}&lon_max=${openTripLocation.data[0].lon}&apikey=${process.env.REACT_APP_OPEN_TRIP_API_KEY}`).then(res => res.json());
+//     console.log(bboxAPI);
+
+//     const xidAPI = await axios.get(`http://api.opentripmap.com/0.1/us/places/xid/?lang=en&xid=${bboxAPI.xid}&apikey=${process.env.REACT_APP_OPEN_TRIP_API_KEY}`).then(res => res.json());
+//     console.log(xidAPI);
+
+//     response.status(200).send(xidAPI);
+// }
+// module.exports = requestTripData;
 // async function getTripData(location) {
     
 //     let url = `https://api.opentripmap.com/0.1/en/places/geoname?name=${location}&country=us&apikey=${process.env.REACT_APP_OPEN_TRIP_API_KEY}`;

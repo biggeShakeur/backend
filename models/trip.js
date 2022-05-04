@@ -8,17 +8,14 @@ const { Schema } = mongoose;
 
 // create a book schema, define how our book objects will be structured.
 const mapSchema = new Schema ({
-  xid: {type: String, required: true},
-  name: {type: String, required: true}, 
-  kind: {type: String, required: true},
+  name: {type: String, required: false},
+  xid: {type: String, required:false},
   osm: {type: String, required: false},
   wikidata: {type: String, required: false},
-  dist: {type: String, required: false},
-  point:{
-      description: {type: String, required: true},
-      lon: {type: Number}, 
-      lat: {type: Number}
-  }
+  kinds: {type: String, required: false},
+  dist: {type: Number, required: false},
+  lon: {type: Number}, 
+  lat: {type: Number}
 });
 
 // Define our model
