@@ -27,7 +27,6 @@ const app = express();
 
 //AUTH0
 const verifyUser = require('./auth.js');
-const { default: axios } = require('axios');
 
 // middleware
 app.use(cors());
