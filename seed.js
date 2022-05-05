@@ -20,6 +20,12 @@ async function seed() {
       description: 'This was a horrid place',
       lon: -122.272705,
       lat: 37.80513
+    },
+    notes: {
+      title: 'Hidden Gems',
+      description: 'Describe the place you visited.',
+      likes: 'What did you like about the place?',
+      dislikes: 'What did you dislike about the place?',
     }
   });
 

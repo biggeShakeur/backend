@@ -61,6 +61,20 @@ async function getTrip(request, response, next) {
     }
   })
 }
+///LOCAL TEST FUNCTION : Use http://localhost:3001/all?location=miami in Thunderclient
+app.get('/all', getAll);
+// This function will 'get' data from the api database. 
+async function getAll(request, response, next) {
+  const { location } = request.query;
+      console.log(location);
+
+      trip(location).then(summaries => response.send(summaries)).catch((error) => {
+        console.error(error.message);
+        response.status(200).send('getTrip function is functioning.')
+      });
+}
+
+
 
 // Post!
 app.post('/trip', postTrip);
