@@ -8,8 +8,8 @@ const client = jwksClient({
   jwksUri: process.env.JWKS_URI
 });
 
-function getKey(header, callback) {
-  client.getSigningKey(header.kid, function (err, key) {
+function getKey(headers, callback) {
+  client.getSigningKey(headers.kid, function (err, key) {
     var signingKey = key.publicKey || key.rsaPublicKey;
     callback(null, signingKey);
   });
