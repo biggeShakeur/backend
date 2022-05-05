@@ -45,15 +45,19 @@ app.get('/trip', getTrip); //Get latitude/longitude
 
 // This function will 'get' data from the api database. 
 async function getTrip(request, response, next) {
-  verifyUser(request, async (err, user) => {
+  const { location } = request.query;
+      console.log(location);   
+      verifyUser(request, async (err, user) => {
     if (err) {
-      response.sent('Invalid token');
+      response.send((err.message,'Invalid token'));
     } else {
-      const { location } = request.query;
+         
       trip(location).then(summaries => response.send(summaries)).catch((error) => {
-        console.error(error);
+        console.error(error.message);
         response.status(200).send('getTrip function is functioning.')
       });
+
+
     }
   })
 }
