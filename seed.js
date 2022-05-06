@@ -10,7 +10,7 @@ const Notes = require('./models/notes.js');
 
 async function seed() {
   // structure is the same as your Book Schema
-// <<<<<<< HEAD
+
 //   await Notes.create({
 //     title: 'Hidden Gems',
 //     description: 'Describe the place you visited.',
