@@ -18,6 +18,12 @@ const mapSchema = new Schema ({
       description: {type: String, required: true},
       lon: {type: Number}, 
       lat: {type: Number}
+  },
+  notes: {
+    title: {type: String, required: false},
+    description: {type: String, required: false},
+    likes: {type: String, required: false},
+    dislikes: {type: String, required: false},
   }
 });
 
