@@ -13,6 +13,7 @@ mongoose.connect(process.env.DB_URL);
 // BRING IN SCHEMA to interact with the model.
 // const Maps = require('./models/trip')
 const trip = require('./modules/trip.js');
+const Notes = require('./models/notes.js');
 const { response, request } = require('express');
 
 // add validation to confirm we are wired up to our mongo DB
@@ -42,19 +43,29 @@ app.get('/', (request, response) => {
 
 // These are our 'endpoints'
 app.get('/trip', getTrip); //Get latitude/longitude
+app.put('/trip/:id', putTrip);
+app.post('/trip', postTrip);
 
-// This function will 'get' data from the api database. 
+app.get('/notes', getNotes);
+app.post('/notes', postNotes);
+app.put('/notes/:id', putNotes);
+app.delete('/notes/:id', deleteNotes);
+
+
+
+// Request
 async function getTrip(request, response, next) {
   const { location } = request.query;
       console.log(location);   
       verifyUser(request, async (err, user) => {
+        console.log(verifyUser);
     if (err) {
       response.send((err.message,'Invalid token'));
     } else {
          
       trip(location).then(summaries => response.send(summaries)).catch((error) => {
         console.error(error.message);
-        response.status(200).send('getTrip function is functioning.')
+        response.status(200).send('getTrip function is NOT functioning.')
       });
 
 
@@ -62,17 +73,60 @@ async function getTrip(request, response, next) {
   })
 }
 
-// Post!
-app.post('/trip', postTrip);
+async function getNotes(request, response, next) {
+  try{
+    let results = await Notes.find();
+    response.status(200).send(results);
+  } catch (err){
+    next(err);
+  }
+}
+
+// Create
 async function postTrip(request, response, next) {
   console.log(request.body);
   try {
-    let createdTrip = await trip.create(request.body);
+    let createdTrip = await Notes.create(request.body);
     response.status(200).send(createdTrip);
   } catch (error) {
     next(error);
   }
 }
+
+
+async function postNotes(request, response, next) {
+  try{
+    let createNote = await Notes.create(request.body);
+    response.status(200).send(createNote);
+  } catch (err){
+    next(err);
+    }
+}
+
+// Update 
+async function putTrip(request, response, next) {
+  try {
+    let id = request.params.id;
+    let updatedTrip = await trip.findByIdAndUpdate(id, request.body, { new: true, overwrite: true });
+    response.status(200).send(updatedTrip);
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+
+async function putNotes(request, response, next) {
+  try {
+    let id = request.params.id;
+    let updatedNotes = await Notes.findByIdAndUpdate(id, request.body, 
+      { new: true, overwrite: true });
+    response.status(200).send(updatedNotes);
+  } catch (error) {
+    next(error);
+  }
+}
+
 
 // Delete
 app.delete('/trip/:id', deleteTrip);
@@ -87,41 +141,21 @@ async function deleteTrip(request, response, next) {
   }
 }
 
-// Update put
-app.put('/trip/:id', putTrip);
-async function putTrip(request, response, next) {
+
+
+async function deleteNotes(request, response, next) {
   try {
     let id = request.params.id;
-    let updatedTrip = await trip.findByIdAndUpdate(id, request.body, { new: true, overwrite: true });
-    response.status(200).send(updatedTrip);
-  } catch (error) {
-    next(error);
+    console.log(id);
+    await Notes.findByIdAndDelete(id);
+    response.status(200).send('Notes were deleted');
+  } catch (err) {
+    next(err);
   }
 }
 
-//Weather request
-app.get('/weather', async (request, response, next) => {
-  let searchQuery = request.query.queryWeather;
-  console.log(searchQuery);
-  let url = (`https://api.weatherbit.io/v2.0/forecast/daily?city=${queryWeather}&key=${process.env.WEATHER_API_KEY}`);
-  try {
-    let weatherResponse = await axios.get(url);
-    console.log(weatherResponse);
-    let forecastArr = weatherResponse.data.data.map(day => new
-      Forecast(day))
-    response.send(forecastArr)
-    console.log(forecastArr);
-  } catch (error) {
-    next(error)
-    console.log('Could not find city :(');
-  }
-})
 
-function Forecast(day) {
-  this.date = day.datetime
-  this.description = day.weather.description
-  console.log(day);
-}
+
 
 //at the bottom of all of our routes
 
@@ -134,4 +168,4 @@ app.get('*', (request, response) => {
 
 // LISTEN: Start the server
 // Listen is an Express method that takes in a Port value and a callback function
-app.listen(PORT, () => console.log(`Listening on ${PORT}`))
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
