@@ -23,6 +23,9 @@ requestTripData = async (location,response) => {
 
     // console.dir("xid:" + xid);
         const xidAPI = await axios.get(`http://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${process.env.REACT_APP_OPEN_TRIP_API_KEY}`);
+
+    //
+        
     //Send a response
     return xidAPI.data;
   
