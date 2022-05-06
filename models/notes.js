@@ -13,14 +13,14 @@ const { Schema } = mongoose;
 
 // create a book schema, define how our book objects will be structured.
 const noteSchema = new Schema ({
-  imgSrc: {type: String, required: true},
-  alt: {type: String, required: true},
-  location: {type: String, required: true},
-  subject: {type: String, required: true}
+  title: {type: String, required: false},
+  description: {type: String, required: false},
+  likes: {type: String, required: false},
+  dislikes: {type: String, required: false}
 });
 
 // Define our model
 // Give it(?) funtionality and the predefined schema to our data.
 // Params: A string and a schema
 const noteModel = mongoose.model('Notes', noteSchema);
-model.exports = noteModel;
+module.exports = noteModel;
